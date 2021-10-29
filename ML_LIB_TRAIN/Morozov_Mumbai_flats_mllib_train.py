@@ -40,6 +40,7 @@ print(data.schema.json())
 
 # Remove nulls , change to "0"
 data = data.fillna(0)
+data = data.filter((data.latitude != 0) & (data.Bedrooms != 0))
 
 data.show(3)
 print(data.schema.json())
@@ -191,7 +192,7 @@ model_3.write().overwrite().save(model_dir + "/model_3")
 
 # MODEL 4 #
 print("=== MODEL 4 ===")
-features = ["latitude,longitude,Bedrooms,Bathrooms,Balcony,Lift"]
+features = ["area,latitude,longitude,Bedrooms,Bathrooms,Balcony,Lift"]
 
 model_4 = prepare_and_train_2(data, features, target)
 model_4.write().overwrite().save(model_dir + "/model_4")
@@ -199,7 +200,7 @@ model_4.write().overwrite().save(model_dir + "/model_4")
 
 # MODEL 5 #
 print("=== MODEL 5 ===")
-features = ["latitude,longitude,Bedrooms,Bathrooms,Balcony,Lift"]
+features = ["area,latitude,longitude,Bedrooms,Bathrooms,Balcony,Lift"]
 
 model_5 = prepare_and_train_3(data, features, target)
 model_5.write().overwrite().save(model_dir + "/model_5")
